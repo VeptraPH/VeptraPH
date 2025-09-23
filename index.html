@@ -84,35 +84,6 @@
             transform: rotate(0deg);
             opacity: 1;
         }
-        
-        /* Modal styling */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s, opacity 0.3s ease-in-out;
-        }
-
-        .modal.show {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            max-width: 400px;
-            text-align: center;
-        }
     </style>
 </head>
 
@@ -211,7 +182,7 @@
                         Submit Order
                     </button>
                     <p class="mt-4 text-sm text-center text-gray-500">
-                        By clicking "Submit Order", your order details will be sent to our team.
+                        By clicking "Submit Order", a new email will be created with your order details.
                     </p>
                 </form>
             </div>
@@ -275,27 +246,6 @@
             </div>
         </section>
     </main>
-    
-    <!-- Modals for success/error -->
-    <div id="success-modal" class="modal">
-        <div class="modal-content">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500 mx-auto mb-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            <h3 class="text-2xl font-bold mb-2">Order Submitted!</h3>
-            <p class="text-gray-600">Your order has been successfully sent to our team. We will contact you shortly.</p>
-        </div>
-    </div>
-    
-    <div id="error-modal" class="modal">
-        <div class="modal-content">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500 mx-auto mb-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-            </svg>
-            <h3 class="text-2xl font-bold mb-2">Submission Failed</h3>
-            <p class="text-gray-600">There was an issue sending your order. Please try again or contact us directly.</p>
-        </div>
-    </div>
 
     <!-- Footer with Disclaimer -->
     <footer class="bg-gray-800 text-white py-12 px-4 text-center">
@@ -386,8 +336,6 @@
         const orderTotalDisplay = document.getElementById('order-total');
         const checkoutForm = document.getElementById('checkout-form');
         const submitOrderBtn = document.getElementById('submit-order-btn');
-        const successModal = document.getElementById('success-modal');
-        const errorModal = document.getElementById('error-modal');
 
         // Function to render the product grid
         function renderProducts() {
@@ -506,66 +454,34 @@
             });
         });
 
-        // Handle form submission with fetch
-        checkoutForm.addEventListener('submit', async (event) => {
+        // Handle form submission with mailto
+        checkoutForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
             const clientName = document.getElementById('client-name').value;
             const clientPhone = document.getElementById('client-phone').value;
             const clientEmail = document.getElementById('client-email').value;
 
-            const orderDetails = {
-                client: {
-                    name: clientName,
-                    phone: clientPhone,
-                    email: clientEmail,
-                },
-                items: cart.map(item => ({
-                    name: item.name,
-                    quantity: item.quantity,
-                    price: item.price,
-                })),
-                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-            };
+            const orderDetails = cart.map(item =>
+                `${item.name} - Quantity: ${item.quantity} - Total: $${(item.price * item.quantity).toFixed(2)}`
+            ).join('\n');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
             
-            submitOrderBtn.textContent = 'Sending...';
-            submitOrderBtn.disabled = true;
+            const emailBody = encodeURIComponent(
+                `New Order from Veptra Website\n\n` +
+                `Client Information:\n` +
+                `Name: ${clientName}\n` +
+                `Contact Number: ${clientPhone}\n` +
+                `Email: ${clientEmail}\n\n` +
+                `Order Details:\n` +
+                `${orderDetails}\n\n` +
+                `Total: $${total}`
+            );
 
-            try {
-                // The URL for your local Node.js server
-                const response = await fetch('http://localhost:3000/submit-order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(orderDetails),
-                });
+            const mailtoLink = `mailto:sevelamer18@protonmail.com?subject=New Order from Veptra&body=${emailBody}`;
 
-                if (response.ok) {
-                    showModal('success');
-                    cart = [];
-                    updateCart();
-                    checkoutForm.reset();
-                } else {
-                    showModal('error');
-                }
-            } catch (error) {
-                console.error('Error submitting order:', error);
-                showModal('error');
-            } finally {
-                submitOrderBtn.textContent = 'Submit Order';
-                submitOrderBtn.disabled = false;
-            }
+            window.location.href = mailtoLink;
         });
-        
-        // Modal functions
-        function showModal(type) {
-            const modal = type === 'success' ? successModal : errorModal;
-            modal.classList.add('show');
-            setTimeout(() => {
-                modal.classList.remove('show');
-            }, 5000);
-        }
 
         // Initial render
         document.addEventListener('DOMContentLoaded', () => {
