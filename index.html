@@ -164,7 +164,7 @@
                 <div id="order-total-container" class="border-t pt-4 mt-4 hidden">
                     <p class="text-lg font-semibold flex justify-between items-center">
                         <span>Total:</span>
-                        <span id="order-total" class="text-blue-600">$0.00</span>
+                        <span id="order-total" class="text-blue-600">₱0</span>
                     </p>
                 </div>
                 <form id="checkout-form" class="mt-8">
@@ -259,7 +259,7 @@
                 <div class="space-y-4">
                     <a href="https://t.me/+hTxSZRD0RNcyNTQ1" class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors font-semibold">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM15 16.5l-2-2-4 4-2-2 2-2 4 4 2-2 2-2-2-2-2-2-2-2 2 2 2 2-2 2-2-2-2-2 2 2 2 2 2z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM15 16.5l-2-2-4 4-2-2 2-2 4 4 2-2 2-2-2-2-2-2-2-2 2 2 2 2 2 2-2 2-2 2-2 2 2 2 2z"/>
                         </svg>
                         <span>Telegram Group</span>
                     </a>
@@ -292,61 +292,55 @@
 
     <script>
         // Sample product data
-        const products = [{
-                id: 6,
-                name: 'Tirzepatide 5mg',
-                price: 99.99,
-                description: 'A dual GIP and GLP-1 receptor agonist for metabolic research.',
-                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+5mg'
-            },
+        const products = [
             {
                 id: 7,
                 name: 'Tirzepatide 15mg',
-                price: 249.99,
+                price: 2500,
                 description: 'A higher concentration of Tirzepatide for advanced metabolic research.',
                 image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+15mg'
             },
             {
                 id: 8,
                 name: 'Tirzepatide 30mg',
-                price: 449.99,
+                price: 4000,
                 description: 'The highest concentration of Tirzepatide for extensive metabolic and obesity studies.',
                 image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+30mg'
             },
             {
                 id: 3,
                 name: 'GHK-Cu',
-                price: 34.99,
+                price: 1000,
                 description: 'A copper peptide naturally present in human plasma, known for its anti-aging properties.',
                 image: 'https://placehold.co/400x400/F0F4F8/64748b?text=GHK-Cu'
             },
             {
                 id: 4,
                 name: 'Selank',
-                price: 65.99,
+                price: 1300,
                 description: 'A synthetic analog of the human body\'s tuftsin peptide, known for its anxiolytic effects.',
                 image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Selank'
             },
             {
                 id: 5,
                 name: 'Semax',
-                price: 69.99,
+                price: 1300,
                 description: 'A synthetic heptapeptide with neuroprotective and nootropic properties.',
                 image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Semax'
             },
             {
-                id: 2,
-                name: 'BAC - Water 10ml',
-                price: 8.99,
-                description: 'Larger volume of bacteriostatic water for multiple research vials.',
-                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=BAC-Water+10ml'
+                id: 9,
+                name: 'R10',
+                price: 2500,
+                description: 'A synthetic peptide with potential applications in wound healing and tissue regeneration.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=R10'
             },
             {
-                id: 1,
-                name: 'BAC - Water 3ml',
-                price: 4.99,
-                description: 'Bacteriostatic water for reconstituting research peptides.',
-                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=BAC-Water+3ml'
+                id: 10,
+                name: 'KPV',
+                price: 1000,
+                description: 'A tripeptide with potent anti-inflammatory and antimicrobial properties.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=KPV'
             }
         ];
 
@@ -374,7 +368,7 @@
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">${product.name}</h3>
                     <p class="text-sm text-gray-500 flex-grow mb-4">${product.description}</p>
                     <div class="mt-auto w-full flex flex-col items-center space-y-2">
-                        <span class="text-2xl font-bold text-blue-600">$${product.price.toFixed(2)}</span>
+                        <span class="text-2xl font-bold text-blue-600">₱${product.price}</span>
                         <div class="flex items-center space-x-2">
                             <label for="quantity-${product.id}" class="text-gray-700">Qty:</label>
                             <input type="number" id="quantity-${product.id}" value="1" min="1" class="w-16 text-center border rounded-md border-gray-300 focus:ring-blue-200 focus:border-blue-300">
@@ -428,9 +422,9 @@
                         <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg">
                         <div class="flex-grow">
                             <h4 class="font-semibold text-gray-800">${item.name}</h4>
-                            <p class="text-sm text-gray-600">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <p class="text-sm text-gray-600">₱${item.price} x ${item.quantity}</p>
                         </div>
-                        <span class="font-bold text-blue-600">$${itemTotal.toFixed(2)}</span>
+                        <span class="font-bold text-blue-600">₱${itemTotal}</span>
                         <button class="remove-from-cart-btn text-red-500 hover:text-red-700 transition-colors" data-id="${item.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-.71-.71A.996.996 0 0014 3H10c-.39 0-.7.31-.79.71L9.5 4H8c-1.1 0-2 .9-2 2h12c0-1.1-.9-2-2-2h-2z" />
@@ -445,7 +439,7 @@
                 orderTotalContainer.classList.add('hidden');
                 submitOrderBtn.disabled = true;
             }
-            orderTotalDisplay.textContent = `$${total.toFixed(2)}`;
+            orderTotalDisplay.textContent = `₱${total}`;
             cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
             if (cart.length > 0) {
                 cartCount.classList.remove('hidden');
@@ -489,9 +483,9 @@
             const clientEmail = document.getElementById('client-email').value;
 
             const orderDetails = cart.map(item =>
-                `${item.name} - Quantity: ${item.quantity} - Total: $${(item.price * item.quantity).toFixed(2)}`
+                `${item.name} - Quantity: ${item.quantity} - Total: ₱${(item.price * item.quantity)}`
             ).join('\n');
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             const emailBody = `--- Client Information ---\n` +
                 `Name: ${clientName}\n` +
@@ -502,7 +496,7 @@
                 `${orderDetails}\n` +
                 `\n` +
                 `--- Order Total ---\n` +
-                `Total: $${total}`;
+                `Total: ₱${total}`;
 
             const mailtoLink = `mailto:sevelamer18@protonmail.com?subject=New Order from Veptra&body=${encodeURIComponent(emailBody)}`;
 
