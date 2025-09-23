@@ -1,118 +1,578 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PeptidePro - Premium Peptides for Your Health</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0; background: #f9f9f9; color: #333;
-    }
-    header {
-      background: #0077cc;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    header nav a {
-      color: white;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    header nav a:hover {
-      text-decoration: underline;
-    }
-    .hero {
-      background: url('https://images.unsplash.com/photo-1581093588401-42b3ae3a2b51?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 0 1rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .btn-primary {
-      background-color: #ff6f61;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    .btn-primary:hover {
-      background-color: #e6554f;
-    }
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    footer {
-      background: #222;
-      color: #bbb;
-      text-align: center;
-      padding: 1rem 0;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veptra</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #333;
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #64748b;
+            border-radius: 10px;
+            border: 2px solid #f7f9fb;
+        }
+
+        /* Hero section background with a subtle gradient */
+        .hero-bg {
+            background-color: #e3f2fd;
+            background-image: linear-gradient(to top right, #e3f2fd, #bbdefb);
+        }
+
+        /* FAQ accordion styling */
+        .faq-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .faq-item label {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .faq-item label:hover {
+            background-color: #f1f5f9;
+        }
+
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            padding: 0 1.5rem;
+        }
+
+        .faq-item input[type="checkbox"]:checked+.faq-answer {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .faq-item .plus-icon,
+        .faq-item .minus-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item input[type="checkbox"]:checked~label .plus-icon {
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+
+        .faq-item input[type="checkbox"]:checked~label .minus-icon {
+            transform: rotate(0deg);
+            opacity: 1;
+        }
+        
+        /* Modal styling */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease-in-out;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="logo"><strong>PeptidePro</strong></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="products.html">Products</a>
-      <a href="education.html">Education</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>Premium Peptides for Your Health</h1>
-    <p>Innovative, high-quality peptides to support your wellness journey.</p>
-    <a href="products.html" class="btn-primary">Explore Our Products</a>
-  </section>
+<body class="antialiased">
 
-  <main>
-    <section>
-      <h2>Why Choose PeptidePro?</h2>
-      <p>At PeptidePro, we specialize in delivering scientifically backed peptides crafted with precision and care. Our products are designed to promote better health, recovery, and performance.</p>
-    </section>
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+                    <path d="M16 8.5L20 4M8 19.5l-4 4M18.5 16L22 20M5.5 8L2 4" />
+                </svg>
+                <h1 class="text-2xl font-bold text-gray-800">Veptra</h1>
+            </a>
+            <!-- Navigation Links -->
+            <nav class="mt-4 md:mt-0 flex items-center space-x-4 sm:space-x-6">
+                <ul class="flex space-x-4 sm:space-x-6">
+                    <li><a href="#home" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Home</a></li>
+                    <li><a href="#product-list" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Product List</a></li>
+                    <li><a href="#checkout" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Order</a></li>
+                    <li><a href="#faq-section" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">FAQs</a></li>
+                </ul>
+                <a href="#checkout" class="relative text-gray-600 hover:text-blue-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.17 6L7 6.01L6.64 4h-2a1 1 0 010-2h2.55a1 1 0 01.92.61L9.1 5h9.45a1 1 0 01.9.59l3.26 6.35c.18.34.29.72.29 1.11V16a1 1 0 01-1 1H6a1 1 0 01-1-1v-1.29l-.27-.51c-.32-.61-.95-1-1.61-1H3a1 1 0 010-2h1.63l1.83-3.67A1.5 1.5 0 016 4.01h1.17a1 1 0 010 2H7.17zM17.43 14H8.48l-1.3-2.6L7.54 10H19.5l-2.07 4z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
 
-    <section>
-      <h2>Featured Products</h2>
-      <ul>
-        <li>Peptide A - Supports muscle growth and recovery</li>
-        <li>Peptide B - Enhances cognitive function and focus</li>
-        <li>Peptide C - Boosts immune system performance</li>
-      </ul>
-      <a href="products.html" class="btn-primary">View All Products</a>
-    </section>
-  </main>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Home Section -->
+        <section id="home" class="hero-bg py-24 text-center rounded-xl shadow-lg mb-12">
+            <div class="container mx-auto px-4">
+                <h1 class="text-6xl font-extrabold text-gray-900 mb-4 animate-fade-in-up">Discover Purity. Define Research.</h1>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto mb-8 animate-fade-in">Explore our collection of high-purity peptides for your scientific studies and laboratory needs.</p>
+                <a href="#product-list" class="inline-flex items-center justify-center bg-blue-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors transform hover:scale-105">
+                    View Products
+                </a>
+            </div>
+        </section>
 
-  <footer>
-    &copy; 2025 PeptidePro. All rights reserved.
-  </footer>
+        <!-- What are Peptides? Section -->
+        <section id="peptide-description" class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-xl mb-12 shadow-sm">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">What Are Peptides?</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Peptides are short chains of amino acids, the building blocks of proteins. They play a vital role in many biological processes. Research peptides are compounds used exclusively in laboratory and scientific studies to explore their potential effects and mechanisms. Our products are intended solely for these research applications.
+            </p>
+        </section>
+
+        <!-- Product List Section -->
+        <section id="product-list" class="my-12">
+            <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Product List</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Product cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section id="checkout" class="my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Your Order</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <div id="cart-summary" class="mb-6 space-y-4">
+                    <!-- Cart items will be rendered here -->
+                </div>
+                <div id="empty-cart-message" class="text-center text-gray-500 hidden">
+                    Your cart is empty. Please add some products to continue.
+                </div>
+                <div id="order-total-container" class="border-t pt-4 mt-4 hidden">
+                    <p class="text-lg font-semibold flex justify-between items-center">
+                        <span>Total:</span>
+                        <span id="order-total" class="text-blue-600">$0.00</span>
+                    </p>
+                </div>
+                <form id="checkout-form" class="mt-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Client Information</h3>
+                    <div class="space-y-4">
+                        <label class="block">
+                            <span class="text-gray-700 font-medium">Your Name</span>
+                            <input type="text" id="client-name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </label>
+                        <label class="block">
+                            <span class="text-gray-700 font-medium">Contact Number</span>
+                            <input type="tel" id="client-phone" name="phone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </label>
+                        <label class="block">
+                            <span class="text-gray-700 font-medium">Email Address</span>
+                            <input type="email" id="client-email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </label>
+                    </div>
+                    <button type="submit" id="submit-order-btn" class="mt-8 w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition-colors shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
+                        Submit Order
+                    </button>
+                    <p class="mt-4 text-sm text-center text-gray-500">
+                        By clicking "Submit Order", your order details will be sent to our team.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq-section" class="my-16">
+            <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg divide-y divide-gray-200">
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1">
+                    <label for="faq1">
+                        Is it safe to consume your products?
+                        <span class="text-gray-500">
+                            <span class="plus-icon">+</span>
+                            <span class="minus-icon hidden">-</span></span>
+                    </label>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">No. All products sold on this website are strictly for in-vitro research and laboratory use only. They are not intended for human consumption, cosmetic use, or any other purposes. Please refer to our disclaimer for more information.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2">
+                    <label for="faq2">
+                        What is the purity of your peptides?
+                        <span class="text-gray-500">
+                            <span class="plus-icon">+</span>
+                            <span class="minus-icon hidden">-</span>
+                        </span>
+                    </label>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">We guarantee a minimum purity of 99% for all our peptides. Each batch is rigorously tested through High-Performance Liquid Chromatography (HPLC) and Mass Spectrometry to ensure quality, potency, and consistency.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3">
+                    <label for="faq3">
+                        How should I store the peptides?
+                        <span class="text-gray-500">
+                            <span class="plus-icon">+</span>
+                            <span class="minus-icon hidden">-</span>
+                        </span>
+                    </label>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">For maximum longevity, lyophilized (freeze-dried) peptides should be stored in a cool, dry place, away from direct sunlight. Once reconstituted with a solvent, they should be stored in a refrigerator ($2-8^\circ C$) for a short period, or frozen for long-term storage.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4">
+                    <label for="faq4">
+                        Do you ship internationally?
+                        <span class="text-gray-500">
+                            <span class="plus-icon">+</span>
+                            <span class="minus-icon hidden">-</span>
+                        </span>
+                    </label>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">Yes, we ship to most countries. However, it is the customer's responsibility to know the import laws of their country. We are not responsible for any issues that may arise with customs or import regulations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Modals for success/error -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500 mx-auto mb-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+            <h3 class="text-2xl font-bold mb-2">Order Submitted!</h3>
+            <p class="text-gray-600">Your order has been successfully sent to our team. We will contact you shortly.</p>
+        </div>
+    </div>
+    
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500 mx-auto mb-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+            </svg>
+            <h3 class="text-2xl font-bold mb-2">Submission Failed</h3>
+            <p class="text-gray-600">There was an issue sending your order. Please try again or contact us directly.</p>
+        </div>
+    </div>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="bg-gray-800 text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h3 class="text-2xl font-bold mb-4 text-red-400">Disclaimer</h3>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                The statements on this website have not been evaluated by the Philippine Food and Drug Administration (FDA). Our products are not intended to diagnose, treat, cure, or prevent any disease.
+            </p>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                **All products are for laboratory research use only and are not for human consumption.** Veptra operates exclusively as a chemical supplier and is not a compounding pharmacy. Our products are intended solely for in-vitro and pre-clinical research purposes.
+            </p>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                By purchasing these products, you acknowledge that you have the necessary equipment, facilities, and expertise to handle them safely. You accept all risks associated with their handling, use, and distribution. You agree to indemnify and hold Veptra harmless from any claims made by third parties resulting from your use of these products outside of their intended research applications.
+            </p>
+            <p class="text-gray-400 text-sm">&copy; 2024 Veptra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [{
+                id: 6,
+                name: 'Tirzepatide 5mg',
+                price: 99.99,
+                description: 'A dual GIP and GLP-1 receptor agonist for metabolic research.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+5mg'
+            },
+            {
+                id: 7,
+                name: 'Tirzepatide 15mg',
+                price: 249.99,
+                description: 'A higher concentration of Tirzepatide for advanced metabolic research.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+15mg'
+            },
+            {
+                id: 8,
+                name: 'Tirzepatide 30mg',
+                price: 449.99,
+                description: 'The highest concentration of Tirzepatide for extensive metabolic and obesity studies.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Tirzepatide+30mg'
+            },
+            {
+                id: 3,
+                name: 'GHK-Cu',
+                price: 34.99,
+                description: 'A copper peptide naturally present in human plasma, known for its anti-aging properties.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=GHK-Cu'
+            },
+            {
+                id: 4,
+                name: 'Selank',
+                price: 65.99,
+                description: 'A synthetic analog of the human body\'s tuftsin peptide, known for its anxiolytic effects.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Selank'
+            },
+            {
+                id: 5,
+                name: 'Semax',
+                price: 69.99,
+                description: 'A synthetic heptapeptide with neuroprotective and nootropic properties.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=Semax'
+            },
+            {
+                id: 2,
+                name: 'BAC - Water 10ml',
+                price: 8.99,
+                description: 'Larger volume of bacteriostatic water for multiple research vials.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=BAC-Water+10ml'
+            },
+            {
+                id: 1,
+                name: 'BAC - Water 3ml',
+                price: 4.99,
+                description: 'Bacteriostatic water for reconstituting research peptides.',
+                image: 'https://placehold.co/400x400/F0F4F8/64748b?text=BAC-Water+3ml'
+            }
+        ];
+
+        let cart = [];
+
+        // DOM elements
+        const productGrid = document.querySelector('#product-list > div');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const cartCount = document.getElementById('cart-count');
+        const cartSummary = document.getElementById('cart-summary');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const orderTotalContainer = document.getElementById('order-total-container');
+        const orderTotalDisplay = document.getElementById('order-total');
+        const checkoutForm = document.getElementById('checkout-form');
+        const submitOrderBtn = document.getElementById('submit-order-btn');
+        const successModal = document.getElementById('success-modal');
+        const errorModal = document.getElementById('error-modal');
+
+        // Function to render the product grid
+        function renderProducts() {
+            productGrid.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow flex flex-col items-center text-center cursor-pointer';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="rounded-lg mb-4 w-48 h-48 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-sm text-gray-500 flex-grow mb-4">${product.description}</p>
+                    <div class="mt-auto w-full flex flex-col items-center space-y-2">
+                        <span class="text-2xl font-bold text-blue-600">$${product.price.toFixed(2)}</span>
+                        <div class="flex items-center space-x-2">
+                            <label for="quantity-${product.id}" class="text-gray-700">Qty:</label>
+                            <input type="number" id="quantity-${product.id}" value="1" min="1" class="w-16 text-center border rounded-md border-gray-300 focus:ring-blue-200 focus:border-blue-300">
+                        </div>
+                        <button class="add-to-cart-btn bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-colors" data-id="${product.id}">Add to Cart</button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+            attachAddToCartListeners();
+        }
+
+        function attachAddToCartListeners() {
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productId = parseInt(event.target.dataset.id);
+                    const quantityInput = document.getElementById(`quantity-${productId}`);
+                    const quantity = parseInt(quantityInput.value);
+                    const productToAdd = products.find(p => p.id === productId);
+
+                    if (productToAdd && quantity > 0) {
+                        const existingCartItem = cart.find(item => item.id === productId);
+                        if (existingCartItem) {
+                            existingCartItem.quantity += quantity;
+                        } else {
+                            cart.push({ ...productToAdd,
+                                quantity
+                            });
+                        }
+                        updateCart();
+                        quantityInput.value = 1; // Reset quantity input
+                    }
+                });
+            });
+        }
+
+        function updateCart() {
+            cartSummary.innerHTML = '';
+            let total = 0;
+            if (cart.length > 0) {
+                emptyCartMessage.classList.add('hidden');
+                orderTotalContainer.classList.remove('hidden');
+                submitOrderBtn.disabled = false;
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+
+                    const cartItemEl = document.createElement('div');
+                    cartItemEl.className = 'flex items-center space-x-4 border rounded-lg p-4 bg-gray-50';
+                    cartItemEl.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg">
+                        <div class="flex-grow">
+                            <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                            <p class="text-sm text-gray-600">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                        </div>
+                        <span class="font-bold text-blue-600">$${itemTotal.toFixed(2)}</span>
+                        <button class="remove-from-cart-btn text-red-500 hover:text-red-700 transition-colors" data-id="${item.id}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-.71-.71A.996.996 0 0014 3H10c-.39 0-.7.31-.79.71L9.5 4H8c-1.1 0-2 .9-2 2h12c0-1.1-.9-2-2-2h-2z" />
+                            </svg>
+                        </button>
+                    `;
+                    cartSummary.appendChild(cartItemEl);
+                });
+                attachRemoveFromCartListeners();
+            } else {
+                emptyCartMessage.classList.remove('hidden');
+                orderTotalContainer.classList.add('hidden');
+                submitOrderBtn.disabled = true;
+            }
+            orderTotalDisplay.textContent = `$${total.toFixed(2)}`;
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (cart.length > 0) {
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+        }
+
+        function attachRemoveFromCartListeners() {
+            document.querySelectorAll('.remove-from-cart-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productId = parseInt(event.target.closest('button').dataset.id);
+                    cart = cart.filter(item => item.id !== productId);
+                    updateCart();
+                });
+            });
+        }
+
+        // Script to handle the FAQ accordion functionality
+        faqItems.forEach(item => {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            const plusIcon = item.querySelector('.plus-icon');
+            const minusIcon = item.querySelector('.minus-icon');
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    plusIcon.style.display = 'none';
+                    minusIcon.style.display = 'inline-block';
+                } else {
+                    plusIcon.style.display = 'inline-block';
+                    minusIcon.style.display = 'none';
+                }
+            });
+        });
+
+        // Handle form submission with fetch
+        checkoutForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const clientName = document.getElementById('client-name').value;
+            const clientPhone = document.getElementById('client-phone').value;
+            const clientEmail = document.getElementById('client-email').value;
+
+            const orderDetails = {
+                client: {
+                    name: clientName,
+                    phone: clientPhone,
+                    email: clientEmail,
+                },
+                items: cart.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+            };
+            
+            submitOrderBtn.textContent = 'Sending...';
+            submitOrderBtn.disabled = true;
+
+            try {
+                // The URL for your local Node.js server
+                const response = await fetch('http://localhost:3000/submit-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderDetails),
+                });
+
+                if (response.ok) {
+                    showModal('success');
+                    cart = [];
+                    updateCart();
+                    checkoutForm.reset();
+                } else {
+                    showModal('error');
+                }
+            } catch (error) {
+                console.error('Error submitting order:', error);
+                showModal('error');
+            } finally {
+                submitOrderBtn.textContent = 'Submit Order';
+                submitOrderBtn.disabled = false;
+            }
+        });
+        
+        // Modal functions
+        function showModal(type) {
+            const modal = type === 'success' ? successModal : errorModal;
+            modal.classList.add('show');
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 5000);
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCart();
+        });
+    </script>
 </body>
+
 </html>
