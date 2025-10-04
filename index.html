@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veptra</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -43,11 +42,9 @@
 
 <body class="antialiased">
 
-    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
             <a href="#home" class="flex items-center space-x-2">
-                <!-- Updated with a new SVG logo -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-10 w-auto text-blue-600 rounded-full">
                     <circle cx="12" cy="12" r="10" stroke="#60A5FA" stroke-width="2" fill="#DBEAFE"/>
                     <path d="M12 4.5V19.5" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
@@ -57,7 +54,6 @@
                 </svg>
                 <h1 class="text-2xl font-bold text-gray-800">Veptra</h1>
             </a>
-            <!-- Navigation Links -->
             <nav class="mt-4 md:mt-0 flex items-center space-x-4 sm:space-x-6">
                 <ul class="flex space-x-4 sm:space-x-6">
                     <li><a href="#home" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Home</a></li>
@@ -70,9 +66,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <!-- Home Section -->
         <section id="home" class="hero-bg py-24 text-center rounded-xl shadow-lg mb-12">
             <div class="container mx-auto px-4">
                 <h1 class="text-6xl font-extrabold text-gray-900 mb-4 animate-fade-in-up">Discover Purity. Define Research.</h1>
@@ -83,7 +77,6 @@
             </div>
         </section>
 
-        <!-- What are Peptides? Section -->
         <section id="peptide-description" class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-xl mb-12 shadow-sm">
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">What Are Peptides?</h3>
             <p class="text-gray-700 leading-relaxed">
@@ -91,21 +84,17 @@
             </p>
         </section>
 
-        <!-- Product List Section -->
         <section id="product-list" class="my-12">
             <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Product List</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Product cards will be inserted here by JavaScript -->
-            </div>
+                </div>
         </section>
 
-        <!-- Checkout Section -->
         <section id="checkout" class="my-16">
             <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Your Order</h2>
             <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
                 <div id="cart-summary" class="mb-6 space-y-4">
-                    <!-- Cart items will be rendered here -->
-                </div>
+                    </div>
                 <div id="empty-cart-message" class="text-center text-gray-500 hidden">
                     Your cart is empty. Please add some products to continue.
                 </div>
@@ -141,7 +130,6 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
         <section id="faq-section" class="my-16">
             <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
             <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
@@ -183,29 +171,29 @@
             </div>
         </section>
 
-        <!-- Contact Us Section -->
         <section id="contact-us" class="my-16">
             <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-8">Contact Us</h2>
             <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg text-center">
-                <p class="text-gray-700 mb-6">Connect with us on our social platforms:</p>
-                <div class="space-y-4">
-                    <a href="https://t.me/+hTxSZRD0RNcyNTQ1" class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors font-semibold">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM15 16.5l-2-2-4 4-2-2 2-2 4 4 2-2 2-2-2-2-2-2-2-2 2 2 2 2 2 2-2 2-2 2-2 2 2 2 2z"/>
+                <p class="text-gray-700 mb-6 font-semibold text-xl">We are available through:</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+
+                    <a href="https://wa.me/639190774570" target="_blank" class="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors font-semibold group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 group-hover:scale-105 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.58 15.34 3.4 16.83L2.06 22L7.33 20.67C8.83 21.5 10.5 21.94 12.16 21.94C17.62 21.94 22.07 17.49 22.07 11.94C22.07 6.48 17.62 2 12.04 2ZM12.04 20.1C10.59 20.1 9.17 19.72 7.97 19L7.61 18.78L4.2 19.84L5.27 16.51L5.04 16.14C4.23 14.81 3.82 13.36 3.82 11.91C3.82 7.42 7.44 3.84 12.04 3.84C16.65 3.84 20.27 7.42 20.27 11.94C20.27 16.43 16.65 20.1 12.04 20.1ZM16.52 14.15C16.31 14.58 15.09 15.15 14.8 15.3C14.51 15.44 14.28 15.48 14.05 15.17C13.82 14.87 13.06 13.92 12.83 13.68C12.59 13.43 12.37 13.37 12.14 13.61C11.89 13.86 11.23 14.73 11.02 14.97C10.8 15.22 10.58 15.25 10.15 15.01C9.72 14.77 8.35 14.33 6.84 13.03C5.7 12.06 4.96 10.74 4.74 10.3C4.51 9.87 4.71 9.68 4.92 9.47C5.07 9.32 5.37 8.94 5.58 8.69C5.79 8.44 5.92 8.36 6.07 8.33C6.22 8.3 6.36 8.3 6.55 8.7C6.75 9.11 7.27 10.42 7.27 10.42C7.27 10.42 7.31 10.51 7.37 10.63C7.45 10.74 7.46 10.77 7.58 10.98C7.75 11.3 7.9 11.64 8.01 11.77C8.11 11.9 8.21 12.03 8.32 12.15C8.43 12.27 8.52 12.35 8.7 12.54C9.17 12.98 9.57 13.05 9.77 12.8C10.02 12.49 10.55 11.86 10.79 11.59C11.02 11.32 11.22 11.25 11.45 11.16C11.66 11.08 11.75 11.05 11.96 11.02C12.17 10.99 13.12 10.75 13.35 11.19C13.58 11.63 13.58 12.01 13.51 12.14C13.44 12.27 13.25 12.59 13.05 12.91L13.04 12.93L13.04 12.92C13.02 12.95 13.01 12.97 12.99 12.99L12.99 13.04C13.03 13.06 13.05 13.1 13.08 13.15C13.16 13.26 13.24 13.37 13.35 13.5C13.72 13.92 14.18 14.1 14.61 14.11C14.88 14.11 15.11 14.07 15.34 14.02C15.65 13.97 15.93 13.91 16.27 14.12C16.59 14.33 16.79 14.61 16.52 14.15Z"/>
                         </svg>
-                        <span>Telegram Group</span>
+                        <span>WhatsApp (09190774570)</span>
                     </a>
-                    <a href="https://www.tiktok.com/@veptraph" class="inline-flex items-center space-x-2 text-gray-800 hover:text-black transition-colors font-semibold">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21 7.25c-1.14-.14-2.22-.38-3.23-.74-.15.4-.33.82-.54 1.25-.92 1.88-2.5 3.38-4.29 4.25-1.78.88-3.92 1.12-5.74.88-.34-.1-.66-.23-.97-.37.38-.61.73-1.25 1.05-1.92.33-.67.58-1.39.75-2.11-.25-.03-.5-.07-.75-.11-1.25-.19-2.5-.59-3.75-1.12-1.25-.53-2.5-1.25-3.75-2.12-.25-.19-.48-.39-.69-.6.25-.53.53-1.07.8-1.61.27-.54.52-1.08.77-1.61.18-.34.33-.67.48-1.01.25.1.5.21.75.32 1.25.53 2.5 1.12 3.75 1.76 1.25.64 2.5 1.28 3.75 1.92 1.25.64 2.5 1.28 3.75 1.92.25.13.5.26.75.4zM10.5 12c-1.25-.19-2.5-.53-3.75-1.06-1.25-.53-2.5-1.25-3.75-2.12-.25-.19-.48-.39-.69-.6.25-.53.53-1.07.8-1.61.27-.54.52-1.08.77-1.61.18-.34.33-.67.48-1.01.25.1.5.21.75.32 1.25.53 2.5 1.12 3.75 1.76 1.25.64 2.5 1.28 3.75 1.92 1.25.64 2.5 1.28 3.75 1.92.25.13.5.26.75.4zM21 7.25c-1.14-.14-2.22-.38-3.23-.74-.15.4-.33.82-.54 1.25-.92 1.88-2.5 3.38-4.29 4.25-1.78.88-3.92 1.12-5.74.88-.34-.1-.66-.23-.97-.37.38-.61.73-1.25 1.05-1.92.33-.67.58-1.39.75-2.11-.25-.03-.5-.07-.75-.11-1.25-.19-2.5-.59-3.75-1.12-1.25-.53-2.5-1.25-3.75-2.12-.25-.19-.48-.39-.69-.6.25-.53.53-1.07.8-1.61.27-.54.52-1.08.77-1.61.18-.34.33-.67.48-1.01.25.1.5.21.75.32 1.25.53 2.5 1.12 3.75 1.76 1.25.64 2.5 1.28 3.75 1.92 1.25.64 2.5 1.28 3.75 1.92.25.13.5.26.75.4z"/>
+
+                    <a href="mailto:veptraph@gmail.com" class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors font-semibold group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 group-hover:scale-105 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        <span>TikTok Account</span>
+                        <span>Email (veptraph@gmail.com)</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer with Disclaimer -->
         <footer class="bg-gray-800 text-white py-12 px-4 text-center">
             <div class="container mx-auto max-w-4xl">
                 <h3 class="text-2xl font-bold mb-4 text-red-400">Disclaimer</h3>
@@ -398,20 +386,20 @@
             const emailBody = `--- Client Information ---\n` +
                 `Name: ${clientName}\n` +
                 `Contact Number: ${clientPhone}\n` +
-                `Email: ${clientEmail}\n` +
-                `\n` +
+                `Email: ${clientEmail}\n\n` +
                 `--- Order Details ---\n` +
-                `${orderDetails}\n` +
-                `\n` +
-                `--- Order Total ---\n` +
-                `Total: ₱${total}`;
+                `${orderDetails}\n\n` +
+                `Order Total: ₱${total}`;
 
-            const mailtoLink = `mailto:veptraph@gmail.com?subject=New Order from Veptra&body=${encodeURIComponent(emailBody)}`;
+            const subject = encodeURIComponent(`New Veptra Order from ${clientName}`);
+            const body = encodeURIComponent(emailBody);
+            // The mailto destination is set here:
+            const mailtoLink = `mailto:veptraph@gmail.com?subject=${subject}&body=${body}`;
 
             window.location.href = mailtoLink;
         });
 
-        // Initial render
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             updateCart();
@@ -420,5 +408,3 @@
 </body>
 
 </html>
-
-
